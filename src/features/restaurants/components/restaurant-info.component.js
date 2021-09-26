@@ -1,12 +1,33 @@
 import React, { Fragment } from "react";
 import { Card } from "react-native-paper";
-import { StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Text } from "react-native";
+import { SvgXml } from "react-native-svg";
+import star from "../../../../assets/star";
 
 const Title = styled.Text`
-  font-weight: bold;
+  font-weight: ${(props) => props.theme.fontWeights.bold};
+  font-size: ${(props) => props.theme.fontSizes.title};
+  color: ${props => props.theme.colors.text.primary};
 `;
+
+const RestaurantContent = styled(Card.Content)`
+  padding-top: ${props => props.theme.space[3]};
+`
+
+const RestaurantCard = styled(Card)`
+  margin-bottom: ${props => props.theme.sizes[1]}
+`
+
+const RestaurantCover = styled(Card.Cover)`
+  background-color: ${props => props.theme.colors.ui.primary};
+`;
+
+const RatingContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+`
 
 export default function RestaurantInfo({ restaurant = {} }) {
   const {
@@ -17,27 +38,29 @@ export default function RestaurantInfo({ restaurant = {} }) {
     ],
     address = "some random street",
     isOpenNow = true,
-    rating,
+    rating = 3,
     isClosedTemporarily
   } = restaurant;
   
+  const ratingArray = Array.from(new Array(Math.floor(rating)));
+
   return (
     <Fragment>
-      <Card elevation={10}>
-        <Card.Cover elevation={5} source={{ uri: photos[0] }} />
-        <Card.Content style={styles.content}>
+      <RestaurantCard elevation={5}>
+        <RestaurantCover elevation={5} source={{ uri: photos[0] }} />
+        <RestaurantContent>
           <Title>{ name }</Title>
-        </Card.Content>
-      </Card>
+          <RatingContainer>
+            {
+              ratingArray.map((_, idx) => <SvgXml xml={star} width={20} height={20} key={`star-rating: ${idx}`} />)
+            }
+          </RatingContainer>
+          <Text>{ address }</Text>
+        </RestaurantContent>
+      </RestaurantCard>
     </Fragment>
   );
 }
-
-const styles = StyleSheet.create({
-  content: {
-    paddingTop: 12,
-  }
-});
 
 RestaurantInfo.propTypes = {
   restaurant: PropTypes.object.isRequired

@@ -1,16 +1,22 @@
-import React from 'react';
-import { Platform, SafeAreaView, StatusBar } from 'react-native';
-import RestaurantsScreen from './src/features/restaurants/screens/restaurants.screen';
-import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
+import React from "react";
+import { Platform, SafeAreaView, StatusBar, StyleSheet } from "react-native";
+import RestaurantsScreen from "./src/features/restaurants/screens/restaurants.screen";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 
-const isAndroid = Platform.OS === 'android';
+const isAndroid = Platform.OS === "android";
 
 export default function App() {
   return (
-    <SafeAreaView style={{ paddingTop: isAndroid ? StatusBar.currentHeight : 0, flex: 1 }}>
+    <SafeAreaView style={styles.safeArea}>
       <RestaurantsScreen />
       <ExpoStatusBar style="auto" />
     </SafeAreaView>
   );
 }
 
+const styles = StyleSheet.create({
+  safeArea: {
+    paddingTop: StatusBar.currentHeight,
+    flex: 1,
+  },
+});

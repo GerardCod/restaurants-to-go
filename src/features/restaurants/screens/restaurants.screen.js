@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { Searchbar } from "react-native-paper";
+import RestaurantInfo from "../components/restaurant-info.component";
 
 export default function RestaurantsScreen() {
   return (
@@ -9,7 +10,7 @@ export default function RestaurantsScreen() {
         <Searchbar />
       </View>
       <View style={styles.container}>
-        <Text>Hello from React Native!</Text>
+        <RestaurantInfo />
       </View>
     </Fragment>
   );

@@ -1,7 +1,12 @@
 import React, { Fragment } from "react";
-import { Card, Text } from "react-native-paper";
+import { Card } from "react-native-paper";
 import { StyleSheet } from "react-native";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const Title = styled.Text`
+  font-weight: bold;
+`;
 
 export default function RestaurantInfo({ restaurant = {} }) {
   const {
@@ -21,7 +26,7 @@ export default function RestaurantInfo({ restaurant = {} }) {
       <Card elevation={10}>
         <Card.Cover elevation={5} source={{ uri: photos[0] }} />
         <Card.Content style={styles.content}>
-          <Text>{ name }</Text>
+          <Title>{ name }</Title>
         </Card.Content>
       </Card>
     </Fragment>

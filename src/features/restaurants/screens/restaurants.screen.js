@@ -1,15 +1,24 @@
-import React from 'react';
-import { View } from 'react-native';
-import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
+import { View, StyleSheet, Text } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
-export default function RestaurantsScreen({ restaurant }) {
+export default function RestaurantsScreen() {
   return (
-    <View>
-      <Text>{ restaurant.title }</Text>
-    </View>
+    <Fragment>
+      <View>
+        <Text>Search</Text>
+      </View>
+      <View style={styles.container}>
+        <Text>Hello from React Native!</Text>
+        <StatusBar style="auto" />
+      </View>
+    </Fragment>
   );
-}
+} 
 
-RestaurantsScreen.propTypes = {
-  restaurant: PropTypes.object.isRequired
-}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  }
+})

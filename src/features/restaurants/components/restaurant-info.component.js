@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Text } from "react-native";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
+import { RatingContainer, RestaurantContent, RestaurantCover, Title, RestaurantCard } from "../../../components/utils";
 
 export default function RestaurantInfo({ restaurant = {} }) {
   const {

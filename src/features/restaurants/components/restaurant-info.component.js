@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { Text } from "react-native";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
-import { RatingContainer, RestaurantContent, RestaurantCover, Title, RestaurantCard } from "../../../components/utils";
+import open from "../../../../assets/open";
+import { RatingContainer, RestaurantContent, RestaurantCover, Title, RestaurantCard, StatsContainer } from "../../../components/utils";
 
 export default function RestaurantInfo({ restaurant = {} }) {
   const {
@@ -26,11 +27,14 @@ export default function RestaurantInfo({ restaurant = {} }) {
         <RestaurantCover elevation={5} source={{ uri: photos[0] }} />
         <RestaurantContent>
           <Title>{ name }</Title>
-          <RatingContainer>
-            {
-              ratingArray.map((_, idx) => <SvgXml xml={star} width={20} height={20} key={`star-rating: ${idx}`} />)
-            }
-          </RatingContainer>
+          <StatsContainer>
+            <RatingContainer>
+              {
+                ratingArray.map((_, idx) => <SvgXml xml={star} width={25} height={25} key={`star-rating: ${idx}`} />)
+              }
+            </RatingContainer>
+            { isOpenNow && <SvgXml xml={open} width={25} height={25} /> }
+          </StatsContainer>
           <Text>{ address }</Text>
         </RestaurantContent>
       </RestaurantCard>

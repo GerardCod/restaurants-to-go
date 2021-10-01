@@ -23,3 +23,9 @@ export const RatingContainer = styled.View`
   display: flex;
   flex-direction: row;
 `
+
+export const StatsContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`

@@ -1,33 +1,8 @@
 import React, { Fragment } from "react";
-import { Card } from "react-native-paper";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import { Text } from "react-native";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
-
-const Title = styled.Text`
-  font-weight: ${(props) => props.theme.fontWeights.bold};
-  font-size: ${(props) => props.theme.fontSizes.title};
-  color: ${props => props.theme.colors.text.primary};
-`;
-
-const RestaurantContent = styled(Card.Content)`
-  padding-top: ${props => props.theme.space[3]};
-`
-
-const RestaurantCard = styled(Card)`
-  margin-bottom: ${props => props.theme.sizes[1]}
-`
-
-const RestaurantCover = styled(Card.Cover)`
-  background-color: ${props => props.theme.colors.ui.primary};
-`;
-
-const RatingContainer = styled.View`
-  display: flex;
-  flex-direction: row;
-`
 
 export default function RestaurantInfo({ restaurant = {} }) {
   const {

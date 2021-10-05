@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import { Searchbar } from "react-native-paper";
 import styled from "styled-components/native";
+import { restaurantsMock } from "../../../infrastructure/data/mockdata";
 import RestaurantInfo from "../components/restaurant-info.component";
 
 const ListContainer = styled.View`
@@ -18,10 +19,20 @@ export default function RestaurantsScreen() {
       <SearchContainer>
         <Searchbar />
       </SearchContainer>
-      <ListContainer>
-        <RestaurantInfo restaurant={{ name: 'Cafetería UTT' }} />
-      </ListContainer>
+      <FlatList
+        data={restaurantsMock}
+        renderItem={RestaurantInfo}
+        keyExtractor={(item) => `restaurant: ${item.id}`}
+        contentContainerStyle={styles.listContainer}
+      />
     </Fragment>
   );
 }
+
+const styles = StyleSheet.create({
+  listContainer: {
+    padding: 16,
+    marginTop: 10
+  }
+});
 

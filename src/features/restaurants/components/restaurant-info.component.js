@@ -1,33 +1,10 @@
 import React, { Fragment } from "react";
-import { Card } from "react-native-paper";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import { Text } from "react-native";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
-
-const Title = styled.Text`
-  font-weight: ${(props) => props.theme.fontWeights.bold};
-  font-size: ${(props) => props.theme.fontSizes.title};
-  color: ${props => props.theme.colors.text.primary};
-`;
-
-const RestaurantContent = styled(Card.Content)`
-  padding-top: ${props => props.theme.space[3]};
-`
-
-const RestaurantCard = styled(Card)`
-  margin-bottom: ${props => props.theme.sizes[1]}
-`
-
-const RestaurantCover = styled(Card.Cover)`
-  background-color: ${props => props.theme.colors.ui.primary};
-`;
-
-const RatingContainer = styled.View`
-  display: flex;
-  flex-direction: row;
-`
+import open from "../../../../assets/open";
+import { RatingContainer, RestaurantContent, RestaurantCover, Title, RestaurantCard, StatsContainer } from "../../../components/utils";
 
 export default function RestaurantInfo({ restaurant = {} }) {
   const {
@@ -50,11 +27,14 @@ export default function RestaurantInfo({ restaurant = {} }) {
         <RestaurantCover elevation={5} source={{ uri: photos[0] }} />
         <RestaurantContent>
           <Title>{ name }</Title>
-          <RatingContainer>
-            {
-              ratingArray.map((_, idx) => <SvgXml xml={star} width={20} height={20} key={`star-rating: ${idx}`} />)
-            }
-          </RatingContainer>
+          <StatsContainer>
+            <RatingContainer>
+              {
+                ratingArray.map((_, idx) => <SvgXml xml={star} width={25} height={25} key={`star-rating: ${idx}`} />)
+              }
+            </RatingContainer>
+            { isOpenNow && <SvgXml xml={open} width={25} height={25} /> }
+          </StatsContainer>
           <Text>{ address }</Text>
         </RestaurantContent>
       </RestaurantCard>
